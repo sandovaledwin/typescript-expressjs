@@ -49,3 +49,8 @@ If you want to create the documentation for all the project code, please just ty
 ```
 docker run -it --rm --name backend  -w /app -v $(pwd):/app -p 3000:3000 typescript-expressjs:8.9.1 typedoc --out doc/ src/ --module commonjs
 ```
+## 7. Typescript Warnings
+If you find experimentalDecorators Typescript warning messages, please add the next line to your vscode settings. You can read more about it, in the next [link](https://github.com/Microsoft/TypeScript/issues/9335).
+```
+{ "typescript.tsdk": "node_modules/typescript/lib" }
+```
