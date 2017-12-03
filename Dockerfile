@@ -7,3 +7,4 @@ EXPOSE 3000
 RUN npm install -g ts-node
 RUN npm install -g typescript
 RUN npm install -g typedoc
+RUN npm install -g jasmine-ts

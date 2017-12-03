@@ -36,20 +36,24 @@ docker run -it --rm --name backend  -w /app -v $(pwd):/app -p 3000:3000 typescri
 docker run -it --rm --name backend  -w /app -v $(pwd):/app -p 3000:3000 typescript-expressjs:8.9.1 npm run start
 ```
 
-## 5. Testing the project.
-In order to test that the project is running ok, you'll need to open the next url in the browser.
-
-### 5.1 Open in the Browser the next url.
+## 5. Opening the project.
+In order to verify that the project is running ok, you'll need to open the next url in the browser.
 ```
 http://localhost:3000
 ```  
 
-## 6. Documentation.
+## 6. Running the Tests.
+For running the test cases written in Jasmine Framework, you'll need to type the next command:
+```
+docker run -it --rm --name backend  -w /app -v $(pwd):/app -p 3000:3000 typescript-expressjs:8.9.1 npm run test
+```
+
+## 7. Documentation.
 If you want to create the documentation for all the project code, please just type the next command.
 ```
 docker run -it --rm --name backend  -w /app -v $(pwd):/app -p 3000:3000 typescript-expressjs:8.9.1 typedoc --out doc/ src/ --module commonjs
 ```
-## 7. Typescript Warnings
+## Note. Typescript Warnings
 If you find experimentalDecorators Typescript warning messages, please add the next line to your vscode settings. You can read more about it, in the next [link](https://github.com/Microsoft/TypeScript/issues/9335).
 ```
 { "typescript.tsdk": "node_modules/typescript/lib" }
