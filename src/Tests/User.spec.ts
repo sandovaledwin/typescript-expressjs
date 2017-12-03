@@ -12,7 +12,7 @@ describe( "GET /api/people/1/", () => {
     it( "Expect the Luke Skywalker JSON object", ( done ) => {
         
         let options = {
-            uri: 'https://swapi.co/api/people/1/',
+            uri: 'https://swapi.co/api/people/1z/',
             json: true 
         };
 
@@ -22,7 +22,7 @@ describe( "GET /api/people/1/", () => {
             done();
         })
         .catch( function ( err ) {
-            console.log( err );
+            expect( err.statusCode ).toBe( 200 );
             done();
         });                
 
