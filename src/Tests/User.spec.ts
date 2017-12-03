@@ -12,7 +12,7 @@ describe( "GET /api/people/1/", () => {
     it( "Expect the Luke Skywalker JSON object", ( done ) => {
         
         let options = {
-            uri: 'https://swapi.co/api/people/1z/',
+            uri: 'https://swapi.co/api/people/1/',
             json: true 
         };
 
