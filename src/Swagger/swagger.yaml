@@ -1,0 +1,367 @@
+openapi: 3.0.0
+servers:
+  - url: http://localhost:{port}/ezcorpWeb/service/
+    variables:
+        port:
+          enum:
+            - "7001"
+          default: "7001"
+          description: This port number represents the environment selected
+info:
+  description: |
+    This is the documentation file that contains all the information about
+    each web service that belongs to the POS2 ezCorp project.
+  version: "1.0.0"
+  title: ezCorp Pawn System - API documentation
+tags:
+  - name: Employee
+    description: Employees related web services
+paths:
+  /employee/employeeLogin:
+    post:
+      tags:
+        - Employee
+      summary: Performs the authentication for each employed.
+      responses:
+        '200':
+          description: Success - An object that contains the employed and system info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployedLogin'
+        '400':
+          description: Fail - An object that contains system info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployedSystemResponse'          
+      requestBody:
+        $ref: '#/components/requestBodies/Auth'
+  /employee/empList:
+    post:
+      tags:
+        - Employee
+      summary: Performs a search for each employee record that match with the query.
+      responses:
+        '200':
+          description: Success - An array of objects that contains the employed information related with the current store.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployedRelatedToTheStore'
+        '400':
+          description: Fail - An empty array.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayEmpty' 
+      requestBody:
+        $ref: '#/components/requestBodies/EmployeeSearchQuery'
+
+components:
+
+  schemas:
+
+    Auth:
+      type: object
+      properties:
+        userId:
+          type: string
+          example: "987654320"
+        password:
+          type: string
+          example: "111111"
+        clientTimestamp:
+          type: string
+          example: "1531355665028"
+        locale:
+          type: string
+          example: "null"
+          
+    EmployeeSearchQuery:
+      type: object
+      properties:
+        securityLevel:
+          type: string
+        searchArea:
+          type: object
+          properties:
+            158001:
+              type: string
+              example: "Tienda"
+        sortBy:
+          type: object
+          properties:
+            192001:
+              type: string
+              example: "Número de empleado"
+        employeeID:
+          type: string
+          example: "987654321"
+        employeeFirstName:
+          type: string
+          example: ""
+        employeeLastName:
+          type: string
+          example: "null"   
+        employeeSSNFirst:
+          type: string
+          example: "null"
+        employeeSSNMiddl:
+          type: string
+          example: "null"
+        employeeSSNLast:
+          type: string
+          example: "null"
+        employeePhoneFirst:
+          type: string
+          example: "null"   
+        employeePhoneMiddl:
+          type: string
+          example: "null"
+        employePhoneLast:
+          type: string
+          example: "null"
+        active:
+          type: boolean
+          example: true
+        inActive:
+          type: boolean
+          example: false   
+        page:
+          type: number
+          example: 0
+
+    EmployedSystemResponse:
+      type: object
+      properties:        
+        processId: 
+          type: string
+          example: "null"            
+        operation: 
+          type: string
+          example: "null"
+        responseStatus: 
+          type: string
+          example: "null"            
+        screenName: 
+          type: string
+          example: "null"            
+        empValidated:
+          type: boolean
+          example: false    
+        processID: 
+          type: string
+          example: "null"            
+        responseMessage: 
+          type: string
+          example: "null"            
+        errorExceptionMessage: 
+          type: string
+          example: "null"            
+        errorExceptionCode: 
+          type: string
+          example: "null"            
+        indicator: 
+          type: string
+          example: "null"            
+        custEzid: 
+          type: string
+          example: "null"            
+        custObjectId: 
+          type: string
+          example: "null"            
+        lastCDRunDate: 
+          type: string
+          example: "null"            
+        employeeId: 
+          type: string
+          example: "null"            
+        empObjectId: 
+          type: string
+          example: "null"            
+        empName: 
+          type: string
+          example: "null"            
+        objectId: 
+          type: string
+          example: "null"            
+        locationId: 
+          type: string
+          example: "null"            
+        exchangeRate: 
+          type: string
+          example: "null"            
+        effectiveDate: 
+          type: string
+          example: "null"             
+        amlLog: 
+          type: string
+          example: "null"             
+        vendorAccessLevel: 
+          type: string
+          example: "null"            
+        legalMandateRequired: 
+          type: boolean
+          example: false 
+
+    EmployedLogin:
+      type: object
+      properties:
+        processId: 
+          type: string
+          example: "null"
+        storeID:
+          type: string
+          example: "null"
+        storeStateId:
+          type: string
+          example: "null"
+        storeCountryId: 
+          type: string
+          example: "null"
+        storeOpenDate:
+          type: string
+          example: "null"
+        fundsInVault: 
+          type: number,
+          example: 0
+        availableEmployee: 
+          type: string
+          example: "null"        
+        drawerList: 
+          type: string
+          example: "null"
+        loginMessage: 
+          type: string
+          example: "Successfully logged in"
+        loginStatus: 
+          type: boolean
+          example: true        
+        employeeRole: 
+          type: string
+          example: "ROLE_TYPE_MIS"        
+        employeeEzid: 
+          type: string
+          example: "987654320"          
+        isStoreOpen: 
+          type: boolean
+          example: false  
+        environment: 
+          type: string
+          example: "NON-PROD"         
+        locale: 
+          type: string
+          example: "null"        
+        thermalPrinter:
+          type: string
+          example: "null"        
+        showStorePrompt:
+          type: boolean
+          example: true     
+        ipAddress: 
+          type: string
+          example: "0:0:0:0:0:0:0:1"  
+        tennesseeStore: 
+          type: boolean
+          example: false        
+        jewelerStore: 
+          type: boolean
+          example: false
+        floridaStore: 
+          type: boolean
+          example: false
+        initialStore: 
+          type: boolean
+          example: true
+        locationId: 
+          type: string
+          example: "null"          
+        storeType: 
+          type: string
+          example: "null"          
+        currencyConversionRate:
+          type: string
+          example: "null"  
+        nedavaStore: 
+          type: boolean
+          example: false        
+        localdev:
+          type: boolean
+          example: true        
+        localstoreid: 
+          type: string
+          example: "01137"         
+        serverName: 
+          type: string
+          example: "WIN-B325354O2DF"         
+        serverIp: 
+          type: string
+          example: "172.19.200.174"  
+        response: 
+          allOf:
+            - $ref: '#/components/schemas/EmployedSystemResponse'  
+        manager: 
+          type: boolean
+          example: false 
+          
+    EmployedRelatedToTheStore:
+      type: array
+      items:  
+        type: object
+        properties:
+          processId: 
+            type: string
+            example: "null"  
+          name: 
+            type: string
+            example: "CARLOS EDWIN SANDOVAL DIAZ" 
+          empID: 
+            type: string
+            example: "987654320" 
+          objectID: 
+            type: number
+            example: 40358402 
+          homeStore: 
+            type: string
+            example: "85129" 
+          clockedInStore: 
+            type: string
+            example: "null" 
+          address: 
+            type: string
+            example: "Libertad Zapopan Jalisco" 
+          securityLevel: 
+            type: string
+            example: "MIS" 
+          empDetails: 
+            type: string
+            example: "null"
+            
+    ArrayEmpty:
+      type: array
+      items:  
+        type: object        
+
+      EmployedLoginFailed:
+        allOf:
+          - $ref: '#/components/schemas/EmployedSystemResponse'      
+  
+  
+
+  requestBodies:
+
+    Auth:
+      description: A JSON object containing the employed credentials
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Auth'
+    EmployeeSearchQuery:        
+      description: A JSON object containing the employee query
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/EmployeeSearchQuery'            

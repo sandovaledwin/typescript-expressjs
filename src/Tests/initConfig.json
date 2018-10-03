@@ -1,0 +1,11 @@
+{
+    "host": "http://localhost:7001/ezcorpWeb/service/",
+    "employeeId": "888888888",
+    "employeePassword": "111111",
+    "employeeWrongId": "987654321",
+    "employeeWrongPassword": "111112",
+    "clientTimestamp": 1534801457474,
+    "storeId": "01155",
+    "dateForFindingEmployees": "08/26/2018",
+    "employeeFirstName": "antonio"
+}
